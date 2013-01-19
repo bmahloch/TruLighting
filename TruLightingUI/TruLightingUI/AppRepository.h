@@ -8,8 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class HueConfiguration;
+
 @interface AppRepository : NSObject
 
 - (NSMutableArray *)getAllLights;
+- (NSMutableArray *)getHueConfiguration;
+
+- (void)saveHueConfiguration:(NSMutableDictionary *)configuration;
 
 @end

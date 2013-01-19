@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#define kDataKeyHueConfiguration @"config"
+#define kDataKeyHueApiKey @"apikey"
+#define kDataKeyHueLights @"lights"
+
 @class AppRepository;
 
 @interface AppContext : NSObject
@@ -15,5 +19,7 @@
 @property (strong, nonatomic) AppRepository *repository;
 
 + (AppContext *)sharedContext;
+
+- (void)displayMessages:(NSMutableArray *)messages;
 
 @end

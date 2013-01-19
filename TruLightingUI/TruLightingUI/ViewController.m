@@ -47,21 +47,21 @@
     TIHueLightingUnit *unit2 = [TIHueLightingUnit new];
     
     unit2.uniqueId = @"B";
-    unit2.ipAddress = @"10.0.0.2";
+    unit2.ipAddress = @"10.0.0.45";
     unit2.apiKey = @"3c2e023bcde31bab6839d7e95c5359a3";
     unit2.lightId = 3;
     
     TIHueLightingUnit *unit3 = [TIHueLightingUnit new];
     
     unit3.uniqueId = @"C";
-    unit3.ipAddress = @"10.0.0.2";
+    unit3.ipAddress = @"10.0.0.45";
     unit3.apiKey = @"3c2e023bcde31bab6839d7e95c5359a3";
     unit3.lightId = 2;
     
     TIHueLightingUnit *unit4 = [TIHueLightingUnit new];
     
     unit4.uniqueId = @"D";
-    unit4.ipAddress = @"10.0.0.2";
+    unit4.ipAddress = @"10.0.0.45";
     unit4.apiKey = @"3c2e023bcde31bab6839d7e95c5359a3";
     unit4.lightId = 1;
     

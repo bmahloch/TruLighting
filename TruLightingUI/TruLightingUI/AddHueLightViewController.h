@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HueAddBridgeCell.h"
 
-@interface AddHueLightViewController : UITableViewController
+@interface AddHueLightViewController : UITableViewController <HueAddBridgeCellDelegate>
 
 @end

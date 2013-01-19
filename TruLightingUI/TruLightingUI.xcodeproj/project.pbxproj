@@ -24,7 +24,6 @@
 		177DD472169750A200992EA8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177DD44A169750A200992EA8 /* Foundation.framework */; };
 		177DD47A169750A200992EA8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 177DD478169750A200992EA8 /* InfoPlist.strings */; };
 		177DD47D169750A200992EA8 /* TruLightingUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 177DD47C169750A200992EA8 /* TruLightingUITests.m */; };
-		177DD4BF1697697A00992EA8 /* libTruLighting.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 177DD4BE1697697A00992EA8 /* libTruLighting.a */; };
 		1788764216A0A439005E237B /* LightsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788764116A0A439005E237B /* LightsViewController.m */; };
 		1788764316A0A439005E237B /* LightsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788764116A0A439005E237B /* LightsViewController.m */; };
 		1788764616A0A79A005E237B /* AddLightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788764516A0A79A005E237B /* AddLightViewController.m */; };
@@ -52,6 +51,15 @@
 		17F2C52316A06CEC008C789D /* AppContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F2C52116A06CEC008C789D /* AppContext.m */; };
 		17F2C52616A06F2A008C789D /* AppRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F2C52516A06F2A008C789D /* AppRepository.m */; };
 		17F2C52716A06F2A008C789D /* AppRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F2C52516A06F2A008C789D /* AppRepository.m */; };
+		C35A72BA16AB01AE0091259A /* libTruLighting.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C35A72B916AB01AE0091259A /* libTruLighting.a */; };
+		C35A72C316AB18170091259A /* HueConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = C35A72C216AB18170091259A /* HueConfiguration.m */; };
+		C35A72C416AB18170091259A /* HueConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = C35A72C216AB18170091259A /* HueConfiguration.m */; };
+		C35A72C716AB186A0091259A /* ModelBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C35A72C616AB186A0091259A /* ModelBase.m */; };
+		C35A72C816AB186A0091259A /* ModelBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C35A72C616AB186A0091259A /* ModelBase.m */; };
+		C35A72CB16AB1A3A0091259A /* HueBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = C35A72CA16AB1A3A0091259A /* HueBridge.m */; };
+		C35A72CC16AB1A3A0091259A /* HueBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = C35A72CA16AB1A3A0091259A /* HueBridge.m */; };
+		C35A72D116AB27330091259A /* HueAddBridgeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C35A72D016AB27330091259A /* HueAddBridgeCell.m */; };
+		C35A72D216AB27330091259A /* HueAddBridgeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C35A72D016AB27330091259A /* HueAddBridgeCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,7 +96,6 @@
 		177DD479169750A200992EA8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		177DD47B169750A200992EA8 /* TruLightingUITests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TruLightingUITests.h; sourceTree = "<group>"; };
 		177DD47C169750A200992EA8 /* TruLightingUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TruLightingUITests.m; sourceTree = "<group>"; };
-		177DD4BE1697697A00992EA8 /* libTruLighting.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTruLighting.a; path = "../../../../sharedbuilds/Release-iphoneos/libTruLighting.a"; sourceTree = "<group>"; };
 		1788764016A0A439005E237B /* LightsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightsViewController.h; sourceTree = "<group>"; };
 		1788764116A0A439005E237B /* LightsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightsViewController.m; sourceTree = "<group>"; };
 		1788764416A0A79A005E237B /* AddLightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLightViewController.h; sourceTree = "<group>"; };
@@ -130,6 +137,15 @@
 		17F2C52116A06CEC008C789D /* AppContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppContext.m; sourceTree = "<group>"; };
 		17F2C52416A06F2A008C789D /* AppRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppRepository.h; sourceTree = "<group>"; };
 		17F2C52516A06F2A008C789D /* AppRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppRepository.m; sourceTree = "<group>"; };
+		C35A72B916AB01AE0091259A /* libTruLighting.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTruLighting.a; path = "../../../../Library/Developer/Xcode/DerivedData/TruLighting-gjjuipjrwicydognckuanqsadcfb/Build/Products/Debug-iphoneos/libTruLighting.a"; sourceTree = "<group>"; };
+		C35A72C116AB18170091259A /* HueConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HueConfiguration.h; sourceTree = "<group>"; };
+		C35A72C216AB18170091259A /* HueConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HueConfiguration.m; sourceTree = "<group>"; };
+		C35A72C516AB186A0091259A /* ModelBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelBase.h; sourceTree = "<group>"; };
+		C35A72C616AB186A0091259A /* ModelBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelBase.m; sourceTree = "<group>"; };
+		C35A72C916AB1A3A0091259A /* HueBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HueBridge.h; sourceTree = "<group>"; };
+		C35A72CA16AB1A3A0091259A /* HueBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HueBridge.m; sourceTree = "<group>"; };
+		C35A72CF16AB27330091259A /* HueAddBridgeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HueAddBridgeCell.h; sourceTree = "<group>"; };
+		C35A72D016AB27330091259A /* HueAddBridgeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HueAddBridgeCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,8 +153,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C35A72BA16AB01AE0091259A /* libTruLighting.a in Frameworks */,
 				17CA9F651697E02D00D7E61C /* QuartzCore.framework in Frameworks */,
-				177DD4BF1697697A00992EA8 /* libTruLighting.a in Frameworks */,
 				177DD449169750A200992EA8 /* UIKit.framework in Frameworks */,
 				177DD44B169750A200992EA8 /* Foundation.framework in Frameworks */,
 				177DD44D169750A200992EA8 /* CoreGraphics.framework in Frameworks */,
@@ -180,8 +196,8 @@
 		177DD447169750A100992EA8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C35A72B916AB01AE0091259A /* libTruLighting.a */,
 				17CA9F641697E02D00D7E61C /* QuartzCore.framework */,
-				177DD4BE1697697A00992EA8 /* libTruLighting.a */,
 				177DD448169750A200992EA8 /* UIKit.framework */,
 				177DD44A169750A200992EA8 /* Foundation.framework */,
 				177DD44C169750A200992EA8 /* CoreGraphics.framework */,
@@ -193,6 +209,8 @@
 		177DD44E169750A200992EA8 /* TruLightingUI */ = {
 			isa = PBXGroup;
 			children = (
+				C35A72C016AB17FD0091259A /* Models */,
+				C35A72CE16AB26F90091259A /* Cells */,
 				17F2C51E16A06C8D008C789D /* Common */,
 				17CA9F341697D9DA00D7E61C /* ColorWheel */,
 				1788763E16A0A3F0005E237B /* Controllers */,
@@ -323,6 +341,28 @@
 				17F2C52516A06F2A008C789D /* AppRepository.m */,
 			);
 			name = Common;
+			sourceTree = "<group>";
+		};
+		C35A72C016AB17FD0091259A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C35A72C516AB186A0091259A /* ModelBase.h */,
+				C35A72C616AB186A0091259A /* ModelBase.m */,
+				C35A72C116AB18170091259A /* HueConfiguration.h */,
+				C35A72C216AB18170091259A /* HueConfiguration.m */,
+				C35A72C916AB1A3A0091259A /* HueBridge.h */,
+				C35A72CA16AB1A3A0091259A /* HueBridge.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		C35A72CE16AB26F90091259A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C35A72CF16AB27330091259A /* HueAddBridgeCell.h */,
+				C35A72D016AB27330091259A /* HueAddBridgeCell.m */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -459,6 +499,10 @@
 				1788764616A0A79A005E237B /* AddLightViewController.m in Sources */,
 				1788764A16A0B2B7005E237B /* AddHueLightViewController.m in Sources */,
 				1788764E16A0B2CF005E237B /* AddDMXLightViewController.m in Sources */,
+				C35A72C316AB18170091259A /* HueConfiguration.m in Sources */,
+				C35A72C716AB186A0091259A /* ModelBase.m in Sources */,
+				C35A72CB16AB1A3A0091259A /* HueBridge.m in Sources */,
+				C35A72D116AB27330091259A /* HueAddBridgeCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +517,10 @@
 				1788764716A0A79A005E237B /* AddLightViewController.m in Sources */,
 				1788764B16A0B2B7005E237B /* AddHueLightViewController.m in Sources */,
 				1788764F16A0B2CF005E237B /* AddDMXLightViewController.m in Sources */,
+				C35A72C416AB18170091259A /* HueConfiguration.m in Sources */,
+				C35A72C816AB186A0091259A /* ModelBase.m in Sources */,
+				C35A72CC16AB1A3A0091259A /* HueBridge.m in Sources */,
+				C35A72D216AB27330091259A /* HueAddBridgeCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,11 +632,15 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "TruLightingUI/TruLightingUI-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/TruLighting-gjjuipjrwicydognckuanqsadcfb/Build/Products/Debug-iphoneos\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SYMROOT = $SYMROOT;
-				USER_HEADER_SEARCH_PATHS = "/Users/bmahloch/Projects/truidea/Development/TruLighting/TruLightingLib/**";
+				USER_HEADER_SEARCH_PATHS = "/Users/administrator/Projects/iOS/TruLighting/TruLightingLib/TruLightingLib/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -602,10 +654,14 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "TruLightingUI/TruLightingUI-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/TruLighting-gjjuipjrwicydognckuanqsadcfb/Build/Products/Debug-iphoneos\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYMROOT = $SYMROOT;
-				USER_HEADER_SEARCH_PATHS = "/Users/bmahloch/Projects/truidea/Development/TruLighting/TruLightingLib/**";
+				USER_HEADER_SEARCH_PATHS = "/Users/administrator/Projects/iOS/TruLighting/TruLightingLib/TruLightingLib/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

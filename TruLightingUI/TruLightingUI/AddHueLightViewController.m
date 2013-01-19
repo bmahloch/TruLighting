@@ -7,63 +7,92 @@
 //
 
 #import "AddHueLightViewController.h"
+#import "AppContext.h"
+#import "AppRepository.h"
+
+#import "TILightingManager.h"
 
 @interface AddHueLightViewController ()
+
 
 @end
 
 @implementation AddHueLightViewController
+{
+    NSMutableArray *_bridgesDataSource;
+    NSMutableArray *_lightsDataSource;
+}
+
+#pragma mark - Constants
+
+NSString *const CELL_IDENTIFIER_ADD_BRIDGE = @"HueAddBridgeCell";
+NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
+
+#pragma mark - Constructors
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
+    
+    if (self)
+    {
+
     }
+    
     return self;
 }
+
+#pragma mark - Overrides
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    _bridgesDataSource = [[AppContext sharedContext].repository getHueConfiguration];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+- (void)viewDidUnload
+{    
+    [super viewDidUnload];
+}
+
+#pragma mark - UITableViewDataSource Implementation
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    if(section == 0)
+        return _bridgesDataSource.count + 1;
+    
+    return _lightsDataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+    if(indexPath.section == 0)
+    {
+        if(indexPath.row == _bridgesDataSource.count)
+        {
+            HueAddBridgeCell *cell = (HueAddBridgeCell*)[tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_ADD_BRIDGE forIndexPath:indexPath];
+            
+            cell.delegate = self;
+            
+            return cell;
+        }
+        else
+            return [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_BRIDGE forIndexPath:indexPath];
+    }
+
+    return [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_BRIDGE forIndexPath:indexPath];
 }
 
 /*
@@ -105,17 +134,44 @@
 }
 */
 
-#pragma mark - Table view delegate
+#pragma mark - UITableViewDelegate Implementation
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    
+}
+
+#pragma mark - HueAddBridgeCellDelegate Implementation
+
+- (void)cellAddBridgeTouched:(HueAddBridgeCell *)cell
+{
+    NSString *apiKey = nil;
+    
+    [TILightingManager connectToHueHost:cell.txtBridgeAddress.text apiKey:&apiKey completionBlock:^(bool success, NSMutableArray *messages) {
+    
+        if(success)
+        {
+            [TILightingManager getStatusOfHueHost:cell.txtBridgeAddress.text apiKey:apiKey success:^(NSDictionary *status){
+                
+                NSMutableDictionary *configuration = [status valueForKey:kDataKeyHueConfiguration];
+                
+                [configuration setValue:apiKey forKey:kDataKeyHueApiKey];
+                [[AppContext sharedContext].repository saveHueConfiguration:configuration];
+                
+                _lightsDataSource = [status valueForKey:kDataKeyHueLights];
+                
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
+                
+            }failure:^(NSMutableArray *errors){
+                
+                [[AppContext sharedContext] displayMessages:errors];
+                
+            }];
+        }
+        else
+            [[AppContext sharedContext] displayMessages:messages];
+        
+    }];
 }
 
 @end
