@@ -35,6 +35,9 @@
 
 - (IBAction)btnAddBridge_Touched:(id)sender
 {
+    if(_txtBridgeAddress.text.length <= 0)
+        return;
+    
     if(_delegate != nil)
         [_delegate cellAddBridgeTouched:self];
 }

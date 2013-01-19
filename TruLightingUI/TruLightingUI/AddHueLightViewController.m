@@ -146,12 +146,13 @@ NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
 - (void)cellAddBridgeTouched:(HueAddBridgeCell *)cell
 {
     NSString *apiKey = nil;
-    
-    [TILightingManager connectToHueHost:cell.txtBridgeAddress.text apiKey:&apiKey completionBlock:^(bool success, NSMutableArray *messages) {
+    NSString *ipAddress = cell.txtBridgeAddress.text;
+
+    [TILightingManager connectToHueHost:ipAddress apiKey:&apiKey completionBlock:^(bool success, NSMutableArray *messages) {
     
         if(success)
         {
-            [TILightingManager getStatusOfHueHost:cell.txtBridgeAddress.text apiKey:apiKey success:^(NSDictionary *status){
+            [TILightingManager getStatusOfHueHost:ipAddress apiKey:apiKey success:^(NSDictionary *status){
                 
                 NSMutableDictionary *configuration = [status valueForKey:kDataKeyHueConfiguration];
                 

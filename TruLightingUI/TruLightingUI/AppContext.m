@@ -40,7 +40,12 @@ static AppContext *_sharedContext;
 
 - (void)displayMessages:(NSMutableArray *)messages
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:[messages componentsJoinedByString:@","] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [self displayMessage:[messages componentsJoinedByString:@","]];
+}
+
+- (void)displayMessage:(NSString *)message
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
     [alert show];
 }

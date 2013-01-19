@@ -83,9 +83,10 @@ static ServiceManager *_defaultManager;
                 for(NSString *key in [item allKeys])
                 {
                     if([key isEqualToString:@"error"])
+                    {
                         success = NO;
-                    
-                    [messages addObject:[[item valueForKey:key] valueForKey:@"description"]];
+                        [messages addObject:[[item valueForKey:key] valueForKey:@"description"]];
+                    }
                 }
             }
             
