@@ -145,12 +145,27 @@ NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
 
 - (void)cellAddBridgeTouched:(HueAddBridgeCell *)cell
 {
-    NSString *apiKey = nil;
     NSString *ipAddress = cell.txtBridgeAddress.text;
 
-    [TILightingManager connectToHueHost:ipAddress apiKey:&apiKey completionBlock:^(bool success, NSMutableArray *messages) {
-    
-        if(success)
+    [TILightingManager connectToHueHost:ipAddress success:^(NSArray *result){
+        
+        NSString *apiKey = nil;
+        
+        for(NSDictionary *item in result)
+        {
+            if(apiKey != nil)
+                break;
+            
+            for(NSString *key in [item allKeys])
+            {
+                if([key isEqualToString:@"success"])
+                    apiKey = [[item valueForKey:key] valueForKey:@"username"];
+            }
+        }
+        
+        if(apiKey == nil)
+            [[AppContext sharedContext] displayMessage:@"No api key was generated."];
+        else
         {
             [TILightingManager getStatusOfHueHost:ipAddress apiKey:apiKey success:^(NSDictionary *status){
                 
@@ -163,16 +178,19 @@ NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
                 
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
                 
-            }failure:^(NSMutableArray *errors){
+            }failure:^(NSInteger statusCode, NSArray *errors){
                 
                 [[AppContext sharedContext] displayMessages:errors];
                 
             }];
         }
-        else
-            [[AppContext sharedContext] displayMessages:messages];
+        
+    }failure:^(NSInteger statusCode, NSArray *errors){
+        
+        [[AppContext sharedContext] displayMessages:errors];
         
     }];
+    
 }
 
 @end

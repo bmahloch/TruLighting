@@ -109,24 +109,7 @@
 
 - (IBAction)btnHueTapped:(id)sender
 {
-    /*
-    NSString *apiKey;
-    
-    [TILightingManager connectToHueHost:@"10.0.0.2" apiKey:&apiKey completionBlock:^(bool success, NSMutableArray *messages) {
-        
-        
-    }];
-    */
-    
-    TIHueLightingUnit *unit = [_group.lightingUnits objectAtIndex:1];
-    
-    [TILightingManager getStatusOfHueHost:unit.ipAddress apiKey:unit.apiKey success:^(NSDictionary *status){
-        
-        NSDictionary *x = status;
-        
-    }failure:^(NSMutableArray *errors){
-        
-    }];
+
 }
 
 - (void)viewDidUnload

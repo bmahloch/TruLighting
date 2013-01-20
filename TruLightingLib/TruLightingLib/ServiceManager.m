@@ -13,7 +13,7 @@
 @interface ServiceManager()
 
 - (NSMutableURLRequest *)getRequestForUrl:(NSString *)url method:(NSString *)method contentType:(NSString *)contentType username:(NSString *)username password:(NSString *)password;
-- (void)executeRequest:(NSMutableURLRequest *)request success:(void(^)(id))successBlock failure:(void(^)(NSInteger, NSMutableArray *))failureBlock;
+- (void)executeRequest:(NSMutableURLRequest *)request success:(void(^)(id))successBlock failure:(void(^)(NSInteger, NSArray *))failureBlock;
 - (BOOL)deserializeData:(NSData *)data intoResult:(id *)result;
 - (BOOL)serializeEntity:(id)entity intoData:(NSData **)data;
 
@@ -33,7 +33,7 @@ static ServiceManager *_defaultManager;
     return _defaultManager;
 }
 
-- (void)setLightingUnit:(TIHueLightingUnit *)unit withState:(NSMutableDictionary *)state
+- (void)setHueLightingUnit:(TIHueLightingUnit *)unit withState:(NSMutableDictionary *)state
 {
     NSString *url = [NSString stringWithFormat:@"http://%@/api/%@/lights/%d/state", unit.ipAddress, unit.apiKey, unit.lightId];
     NSMutableURLRequest *request = [self getRequestForUrl:url method:kHttpMethodPut contentType:kContentTypeJson username:nil password:nil];
@@ -51,7 +51,7 @@ static ServiceManager *_defaultManager;
             
             LogInfo(@"Successful state update: %@", result);
             
-        }failure:^(NSInteger status, NSMutableArray *errors) {
+        }failure:^(NSInteger status, NSArray *errors) {
             
             LogError(@"State update failed: %d - %@", status, errors);
             
@@ -59,7 +59,7 @@ static ServiceManager *_defaultManager;
     }
 }
 
-- (void)connectToHueHost:(NSString *)ip authorization:(NSDictionary *)authorization completionBlock:(void(^)(bool, NSMutableArray *))completion;
+- (void)connectToHueHost:(NSString *)ip authorization:(NSDictionary *)authorization success:(void(^)(NSArray *))success failure:(void(^)(NSInteger, NSArray *))failure
 {
     NSString *url = [NSString stringWithFormat:@"http://%@/api", ip];
     NSMutableURLRequest *request = [self getRequestForUrl:url method:kHttpMethodPost contentType:kContentTypeJson username:nil password:nil];
@@ -72,46 +72,16 @@ static ServiceManager *_defaultManager;
     else
     {
         [request setHTTPBody:data];
-        
-        [self executeRequest:request success:^(NSMutableArray *result) {
-           
-            bool success = YES;
-            NSMutableArray *messages = [NSMutableArray array];
-            
-            for(NSDictionary *item in result)
-            {
-                for(NSString *key in [item allKeys])
-                {
-                    if([key isEqualToString:@"error"])
-                    {
-                        success = NO;
-                        [messages addObject:[[item valueForKey:key] valueForKey:@"description"]];
-                    }
-                }
-            }
-            
-            completion(success, messages);
-            
-        }failure:^(NSInteger status, NSMutableArray *errors) {
-            
-            completion(NO, errors);
-            
-        }];
+        [self executeRequest:request success:success failure:failure];
     }
 }
 
-- (void)getStatusOfHueHost:(NSString *)ip apiKey:(NSString *)apiKey success:(void(^)(NSDictionary *))success failure:(void(^)(NSMutableArray *))failure
+- (void)getStatusOfHueHost:(NSString *)ip apiKey:(NSString *)apiKey success:(void(^)(NSDictionary *))success failure:(void(^)(NSInteger, NSArray *))failure
 {
     NSString *url = [NSString stringWithFormat:@"http://%@/api/%@", ip, apiKey];
     NSMutableURLRequest *request = [self getRequestForUrl:url method:kHttpMethodGet contentType:kContentTypeJson username:nil password:nil];
     
-    [self executeRequest:request success:success failure:^(NSInteger status, NSMutableArray *errors){
-        
-        LogError(@"Hue status request failed: %d - %@", status, errors);
-        
-        failure(errors);
-        
-    }];
+    [self executeRequest:request success:success failure:failure];
 }
 
 #pragma mark - Private Methods
@@ -131,7 +101,7 @@ static ServiceManager *_defaultManager;
     return request;
 }
 
-- (void)executeRequest:(NSMutableURLRequest *)request success:(void(^)(id))successBlock failure:(void(^)(NSInteger statusCode, NSMutableArray *errors))failureBlock
+- (void)executeRequest:(NSMutableURLRequest *)request success:(void(^)(id))successBlock failure:(void(^)(NSInteger statusCode, NSArray *errors))failureBlock
 {
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     

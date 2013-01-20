@@ -39,8 +39,8 @@
 
 + (ServiceManager *)defaultManager;
 
-- (void)setLightingUnit:(TIHueLightingUnit *)unit withState:(NSMutableDictionary *)state;
-- (void)connectToHueHost:(NSString *)ip authorization:(NSDictionary *)authorization completionBlock:(void(^)(bool, NSMutableArray *))completion;
-- (void)getStatusOfHueHost:(NSString *)ip apiKey:(NSString *)apiKey success:(void(^)(NSDictionary *))success failure:(void(^)(NSMutableArray *))failure;
+- (void)setHueLightingUnit:(TIHueLightingUnit *)unit withState:(NSMutableDictionary *)state;
+- (void)connectToHueHost:(NSString *)ip authorization:(NSDictionary *)authorization success:(void(^)(NSArray *))success failure:(void(^)(NSInteger, NSArray *))failure;
+- (void)getStatusOfHueHost:(NSString *)ip apiKey:(NSString *)apiKey success:(void(^)(NSDictionary *))success failure:(void(^)(NSInteger, NSArray *))failure;
 
 @end

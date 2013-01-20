@@ -20,7 +20,7 @@
 
 + (AppContext *)sharedContext;
 
-- (void)displayMessages:(NSMutableArray *)messages;
+- (void)displayMessages:(NSArray *)messages;
 - (void)displayMessage:(NSString *)message;
 
 @end

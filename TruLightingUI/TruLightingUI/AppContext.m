@@ -38,7 +38,7 @@ static AppContext *_sharedContext;
     return _sharedContext;
 }
 
-- (void)displayMessages:(NSMutableArray *)messages
+- (void)displayMessages:(NSArray *)messages
 {
     [self displayMessage:[messages componentsJoinedByString:@","]];
 }

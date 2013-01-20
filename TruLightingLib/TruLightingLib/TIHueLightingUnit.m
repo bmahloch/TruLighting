@@ -124,7 +124,7 @@
                         _timer = nil;
                     }
                     else
-                        [[ServiceManager defaultManager] setLightingUnit:self withState:_commandState];
+                        [[ServiceManager defaultManager] setHueLightingUnit:self withState:_commandState];
                     
                     _commandState = nil;
                 }

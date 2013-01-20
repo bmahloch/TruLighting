@@ -15,7 +15,7 @@
 
 @interface TILightingManager : NSObject
 
-+ (void)connectToHueHost:(NSString *)ip apiKey:(NSString **)apiKey completionBlock:(void(^)(bool, NSMutableArray *))completion;
-+ (void)getStatusOfHueHost:(NSString *)ip apiKey:(NSString *)apiKey success:(void(^)(NSDictionary *))success failure:(void(^)(NSMutableArray *))failure;
++ (void)connectToHueHost:(NSString *)ip success:(void(^)(NSArray *))success failure:(void(^)(NSInteger, NSArray *))failure;
++ (void)getStatusOfHueHost:(NSString *)ip apiKey:(NSString *)apiKey success:(void(^)(NSDictionary *))success failure:(void(^)(NSInteger, NSArray *))failure;
 
 @end
