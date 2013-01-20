@@ -15,6 +15,6 @@
 - (NSMutableArray *)getAllLights;
 - (NSMutableArray *)getHueConfiguration;
 
-- (void)saveHueConfiguration:(NSMutableDictionary *)configuration;
+- (void)saveHueConfiguration:(NSMutableArray *)configuration;
 
 @end

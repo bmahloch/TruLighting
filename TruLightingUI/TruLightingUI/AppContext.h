@@ -8,9 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#define kDataKeyHueConfiguration @"config"
-#define kDataKeyHueApiKey @"apikey"
-#define kDataKeyHueLights @"lights"
+#define kMessageHueApiKeyNotFound @"Api key not found. Access denied."
+#define kMessageHueBridgeExists @"Bridge already configured with the specified address."
 
 @class AppRepository;
 

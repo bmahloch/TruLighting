@@ -54,10 +54,6 @@
 		C35A72BA16AB01AE0091259A /* libTruLighting.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C35A72B916AB01AE0091259A /* libTruLighting.a */; };
 		C35A72C316AB18170091259A /* HueConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = C35A72C216AB18170091259A /* HueConfiguration.m */; };
 		C35A72C416AB18170091259A /* HueConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = C35A72C216AB18170091259A /* HueConfiguration.m */; };
-		C35A72C716AB186A0091259A /* ModelBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C35A72C616AB186A0091259A /* ModelBase.m */; };
-		C35A72C816AB186A0091259A /* ModelBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C35A72C616AB186A0091259A /* ModelBase.m */; };
-		C35A72CB16AB1A3A0091259A /* HueBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = C35A72CA16AB1A3A0091259A /* HueBridge.m */; };
-		C35A72CC16AB1A3A0091259A /* HueBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = C35A72CA16AB1A3A0091259A /* HueBridge.m */; };
 		C35A72D116AB27330091259A /* HueAddBridgeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C35A72D016AB27330091259A /* HueAddBridgeCell.m */; };
 		C35A72D216AB27330091259A /* HueAddBridgeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C35A72D016AB27330091259A /* HueAddBridgeCell.m */; };
 /* End PBXBuildFile section */
@@ -140,10 +136,6 @@
 		C35A72B916AB01AE0091259A /* libTruLighting.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTruLighting.a; path = "../../../../Library/Developer/Xcode/DerivedData/TruLighting-gjjuipjrwicydognckuanqsadcfb/Build/Products/Debug-iphoneos/libTruLighting.a"; sourceTree = "<group>"; };
 		C35A72C116AB18170091259A /* HueConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HueConfiguration.h; sourceTree = "<group>"; };
 		C35A72C216AB18170091259A /* HueConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HueConfiguration.m; sourceTree = "<group>"; };
-		C35A72C516AB186A0091259A /* ModelBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelBase.h; sourceTree = "<group>"; };
-		C35A72C616AB186A0091259A /* ModelBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelBase.m; sourceTree = "<group>"; };
-		C35A72C916AB1A3A0091259A /* HueBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HueBridge.h; sourceTree = "<group>"; };
-		C35A72CA16AB1A3A0091259A /* HueBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HueBridge.m; sourceTree = "<group>"; };
 		C35A72CF16AB27330091259A /* HueAddBridgeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HueAddBridgeCell.h; sourceTree = "<group>"; };
 		C35A72D016AB27330091259A /* HueAddBridgeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HueAddBridgeCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -346,12 +338,8 @@
 		C35A72C016AB17FD0091259A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C35A72C516AB186A0091259A /* ModelBase.h */,
-				C35A72C616AB186A0091259A /* ModelBase.m */,
 				C35A72C116AB18170091259A /* HueConfiguration.h */,
 				C35A72C216AB18170091259A /* HueConfiguration.m */,
-				C35A72C916AB1A3A0091259A /* HueBridge.h */,
-				C35A72CA16AB1A3A0091259A /* HueBridge.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -500,8 +488,6 @@
 				1788764A16A0B2B7005E237B /* AddHueLightViewController.m in Sources */,
 				1788764E16A0B2CF005E237B /* AddDMXLightViewController.m in Sources */,
 				C35A72C316AB18170091259A /* HueConfiguration.m in Sources */,
-				C35A72C716AB186A0091259A /* ModelBase.m in Sources */,
-				C35A72CB16AB1A3A0091259A /* HueBridge.m in Sources */,
 				C35A72D116AB27330091259A /* HueAddBridgeCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,8 +504,6 @@
 				1788764B16A0B2B7005E237B /* AddHueLightViewController.m in Sources */,
 				1788764F16A0B2CF005E237B /* AddDMXLightViewController.m in Sources */,
 				C35A72C416AB18170091259A /* HueConfiguration.m in Sources */,
-				C35A72C816AB186A0091259A /* ModelBase.m in Sources */,
-				C35A72CC16AB1A3A0091259A /* HueBridge.m in Sources */,
 				C35A72D216AB27330091259A /* HueAddBridgeCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

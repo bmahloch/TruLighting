@@ -10,10 +10,13 @@
 #import "AppContext.h"
 #import "AppRepository.h"
 
+#import "HueConfiguration.h"
+
 #import "TILightingManager.h"
 
 @interface AddHueLightViewController ()
 
+- (void)loadConfigurationForBridge:(NSDictionary *)bridge;
 
 @end
 
@@ -89,7 +92,15 @@ NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
             return cell;
         }
         else
-            return [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_BRIDGE forIndexPath:indexPath];
+        {
+            NSDictionary *bridge = [_bridgesDataSource objectAtIndex:indexPath.row];
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_BRIDGE forIndexPath:indexPath];
+            
+            cell.textLabel.text = [bridge valueForKey:kDataKeyHueBridgeName];
+            cell.detailTextLabel.text = [bridge valueForKey:kDataKeyHueBridgeIpAddress];
+            
+            return cell;
+        }
     }
 
     return [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_BRIDGE forIndexPath:indexPath];
@@ -138,7 +149,11 @@ NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if(indexPath.section == 0)
+    {
+        NSDictionary *bridge = [_bridgesDataSource objectAtIndex:indexPath.row];
+        [self loadConfigurationForBridge:bridge];
+    }
 }
 
 #pragma mark - HueAddBridgeCellDelegate Implementation
@@ -147,6 +162,12 @@ NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
 {
     NSString *ipAddress = cell.txtBridgeAddress.text;
 
+    if([HueConfiguration bridgeExists:_bridgesDataSource byHost:ipAddress])
+    {
+        [[AppContext sharedContext] displayMessage:kMessageHueBridgeExists];
+        return;
+    }
+    
     [TILightingManager connectToHueHost:ipAddress success:^(NSArray *result){
         
         NSString *apiKey = nil;
@@ -158,13 +179,13 @@ NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
             
             for(NSString *key in [item allKeys])
             {
-                if([key isEqualToString:@"success"])
-                    apiKey = [[item valueForKey:key] valueForKey:@"username"];
+                if([key isEqualToString:kDataKeyHueSuccess])
+                    apiKey = [[item valueForKey:key] valueForKey:kDataKeyHueUsername];
             }
         }
         
         if(apiKey == nil)
-            [[AppContext sharedContext] displayMessage:@"No api key was generated."];
+            [[AppContext sharedContext] displayMessage:kMessageHueApiKeyNotFound];
         else
         {
             [TILightingManager getStatusOfHueHost:ipAddress apiKey:apiKey success:^(NSDictionary *status){
@@ -172,11 +193,12 @@ NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
                 NSMutableDictionary *configuration = [status valueForKey:kDataKeyHueConfiguration];
                 
                 [configuration setValue:apiKey forKey:kDataKeyHueApiKey];
-                [[AppContext sharedContext].repository saveHueConfiguration:configuration];
+                [_bridgesDataSource addObject:configuration];
+                [[AppContext sharedContext].repository saveHueConfiguration:_bridgesDataSource];
                 
                 _lightsDataSource = [status valueForKey:kDataKeyHueLights];
                 
-                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [self.tableView reloadData];
                 
             }failure:^(NSInteger statusCode, NSArray *errors){
                 
@@ -190,7 +212,23 @@ NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
         [[AppContext sharedContext] displayMessages:errors];
         
     }];
-    
+}
+
+- (void)loadConfigurationForBridge:(NSDictionary *)bridge
+{
+    [TILightingManager getStatusOfHueHost:[bridge valueForKey:kDataKeyHueBridgeIpAddress] apiKey:[bridge valueForKey:kDataKeyHueApiKey] success:^(NSDictionary *status){
+        
+        //NSMutableDictionary *configuration = [status valueForKey:kDataKeyHueConfiguration];
+        
+        _lightsDataSource = [status valueForKey:kDataKeyHueLights];
+        
+        [self.tableView reloadData];
+        
+    }failure:^(NSInteger statusCode, NSArray *errors){
+        
+        [[AppContext sharedContext] displayMessages:errors];
+        
+    }];
 }
 
 @end

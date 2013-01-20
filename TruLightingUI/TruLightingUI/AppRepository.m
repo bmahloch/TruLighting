@@ -48,10 +48,10 @@ NSString *const DATA_FILE_HUE_CONFIGURATION = @"HueConfiguration.plist";
     if([[NSFileManager defaultManager] fileExistsAtPath:path])
         return [[NSMutableArray alloc] initWithContentsOfFile:path];
     
-    return nil;
+    return [[NSMutableArray alloc] init];
 }
 
-- (void)saveHueConfiguration:(NSMutableDictionary *)configuration
+- (void)saveHueConfiguration:(NSMutableArray *)configuration
 {
     NSString *path = [[self documentsDirectory] stringByAppendingPathComponent:DATA_FILE_HUE_CONFIGURATION];
     

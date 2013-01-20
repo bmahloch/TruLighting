@@ -7,10 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ModelBase.h"
 
-@interface HueConfiguration : ModelBase
+#define kDataKeyHueConfiguration @"config"
+#define kDataKeyHueApiKey @"apikey"
+#define kDataKeyHueLights @"lights"
+#define kDataKeyHueError @"error"
+#define kDataKeyHueSuccess @"success"
+#define kDataKeyHueUsername @"username"
+#define kDataKeyHueBridgeIpAddress @"ipaddress"
+#define kDataKeyHueBridgeName @"name"
 
-@property NSMutableArray *bridges;
+@interface HueConfiguration : NSObject
+
++ (BOOL)bridgeExists:(NSMutableArray *)configuration byHost:(NSString *)host;
 
 @end

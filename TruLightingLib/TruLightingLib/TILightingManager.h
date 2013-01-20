@@ -8,11 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define kApplicationName @"TruLighting"
-
-#define kDataKeyHueUsername @"username"
-#define kDataKeyHueDeviceType @"devicetype"
-
 @interface TILightingManager : NSObject
 
 + (void)connectToHueHost:(NSString *)ip success:(void(^)(NSArray *))success failure:(void(^)(NSInteger, NSArray *))failure;

@@ -18,6 +18,13 @@
 
 @implementation TILightingManager
 
+#pragma mark - Constants
+
+NSString *const APPLICATION_NAME = @"TruLighting";
+NSString *const DATA_KEY_HUE_ERROR = @"error";
+NSString *const DATA_KEY_HUE_USERNAME = @"username";
+NSString *const DATA_KEY_HUE_DEVICE_TYPE = @"devicetype";
+
 #pragma mark - Public Methods
 
 + (void)connectToHueHost:(NSString *)ip success:(void(^)(NSArray *))success failure:(void(^)(NSInteger, NSArray *))failure
@@ -25,8 +32,8 @@
     NSMutableDictionary *authorization = [NSMutableDictionary dictionary];
     NSString *apiKey = [[NSString guid] stringByReplacingOccurrencesOfString:@"-" withString:@""];
     
-    [authorization setValue:apiKey forKey:kDataKeyHueUsername];
-    [authorization setValue:kApplicationName forKey:kDataKeyHueDeviceType];
+    [authorization setValue:apiKey forKey:DATA_KEY_HUE_USERNAME];
+    [authorization setValue:APPLICATION_NAME forKey:DATA_KEY_HUE_DEVICE_TYPE];
     
     [[ServiceManager defaultManager] connectToHueHost:ip authorization:authorization success:^(NSArray *result){
        
@@ -63,7 +70,7 @@
     {
         for(NSString *key in [item allKeys])
         {
-            if([key isEqualToString:@"error"])
+            if([key isEqualToString:DATA_KEY_HUE_ERROR])
                 return NO;
         }
     }
