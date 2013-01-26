@@ -16,6 +16,8 @@
 #define kDataKeyHueUsername @"username"
 #define kDataKeyHueBridgeIpAddress @"ipaddress"
 #define kDataKeyHueBridgeName @"name"
+#define kDataKeyHueBridgeMacAddress @"mac"
+#define kDataKeyHueLightName @"name"
 
 @interface HueConfiguration : NSObject
 

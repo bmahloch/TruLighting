@@ -7,12 +7,18 @@
 //
 
 #import "LightsViewController.h"
+#import "AppContext.h"
+#import "AppRepository.h"
+#import "HueLightingUnit.h"
 
 @interface LightsViewController ()
 
 @end
 
 @implementation LightsViewController
+{
+    NSMutableArray *_dataSource;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,6 +38,14 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [[AppContext sharedContext].repository getAllLightingUnits:^(NSMutableArray *result){
+        
+        _dataSource = result;
+        [self.tableView reloadData];
+        
+    }failure:^(NSError *error){
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,24 +58,21 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return _dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"HueLightingUnitCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
+    cell.textLabel.text = ((HueLightingUnit *)[_dataSource objectAtIndex:indexPath.row]).name;
     
     return cell;
 }

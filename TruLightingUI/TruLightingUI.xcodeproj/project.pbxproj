@@ -25,13 +25,9 @@
 		177DD47A169750A200992EA8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 177DD478169750A200992EA8 /* InfoPlist.strings */; };
 		177DD47D169750A200992EA8 /* TruLightingUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 177DD47C169750A200992EA8 /* TruLightingUITests.m */; };
 		1788764216A0A439005E237B /* LightsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788764116A0A439005E237B /* LightsViewController.m */; };
-		1788764316A0A439005E237B /* LightsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788764116A0A439005E237B /* LightsViewController.m */; };
 		1788764616A0A79A005E237B /* AddLightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788764516A0A79A005E237B /* AddLightViewController.m */; };
-		1788764716A0A79A005E237B /* AddLightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788764516A0A79A005E237B /* AddLightViewController.m */; };
 		1788764A16A0B2B7005E237B /* AddHueLightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788764916A0B2B7005E237B /* AddHueLightViewController.m */; };
-		1788764B16A0B2B7005E237B /* AddHueLightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788764916A0B2B7005E237B /* AddHueLightViewController.m */; };
 		1788764E16A0B2CF005E237B /* AddDMXLightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788764D16A0B2CF005E237B /* AddDMXLightViewController.m */; };
-		1788764F16A0B2CF005E237B /* AddDMXLightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1788764D16A0B2CF005E237B /* AddDMXLightViewController.m */; };
 		17CA9F4F1697DAF400D7E61C /* ANImageBitmapRep.m in Sources */ = {isa = PBXBuildFile; fileRef = 17CA9F371697DAF400D7E61C /* ANImageBitmapRep.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		17CA9F501697DAF400D7E61C /* BitmapContextRep.m in Sources */ = {isa = PBXBuildFile; fileRef = 17CA9F391697DAF400D7E61C /* BitmapContextRep.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		17CA9F511697DAF400D7E61C /* NSImage+ANImageBitmapRep.m in Sources */ = {isa = PBXBuildFile; fileRef = 17CA9F3C1697DAF400D7E61C /* NSImage+ANImageBitmapRep.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -48,14 +44,19 @@
 		17CA9F631697DF9C00D7E61C /* BGRSLoupeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 17CA9F5B1697DB1300D7E61C /* BGRSLoupeLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		17CA9F651697E02D00D7E61C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17CA9F641697E02D00D7E61C /* QuartzCore.framework */; };
 		17F2C52216A06CEC008C789D /* AppContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F2C52116A06CEC008C789D /* AppContext.m */; };
-		17F2C52316A06CEC008C789D /* AppContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F2C52116A06CEC008C789D /* AppContext.m */; };
 		17F2C52616A06F2A008C789D /* AppRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F2C52516A06F2A008C789D /* AppRepository.m */; };
-		17F2C52716A06F2A008C789D /* AppRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F2C52516A06F2A008C789D /* AppRepository.m */; };
 		C35A72BA16AB01AE0091259A /* libTruLighting.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C35A72B916AB01AE0091259A /* libTruLighting.a */; };
 		C35A72C316AB18170091259A /* HueConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = C35A72C216AB18170091259A /* HueConfiguration.m */; };
-		C35A72C416AB18170091259A /* HueConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = C35A72C216AB18170091259A /* HueConfiguration.m */; };
 		C35A72D116AB27330091259A /* HueAddBridgeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C35A72D016AB27330091259A /* HueAddBridgeCell.m */; };
-		C35A72D216AB27330091259A /* HueAddBridgeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C35A72D016AB27330091259A /* HueAddBridgeCell.m */; };
+		C3AA9C2616B37D58009CE3D8 /* LightingState.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA9C2516B37D58009CE3D8 /* LightingState.m */; };
+		C3AA9C2916B37D73009CE3D8 /* GroupLight.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA9C2816B37D73009CE3D8 /* GroupLight.m */; };
+		C3AA9C2C16B384B0009CE3D8 /* LightingGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA9C2B16B384B0009CE3D8 /* LightingGroup.m */; };
+		C3AA9C3216B38509009CE3D8 /* LightingUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA9C3116B38509009CE3D8 /* LightingUnit.m */; };
+		C3BE64B316B220670064090B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BE64B216B220670064090B /* CoreData.framework */; };
+		C3BE64B716B220A60064090B /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C3BE64B516B220A60064090B /* DataModel.xcdatamodeld */; };
+		C3BE64D316B230F70064090B /* DMXLightingUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BE64D216B230F70064090B /* DMXLightingUnit.m */; };
+		C3BE64D616B231120064090B /* HueLightingUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BE64D516B231120064090B /* HueLightingUnit.m */; };
+		C3BF085316AE4BFA00B9B8EA /* NSObject+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BF085216AE4BFA00B9B8EA /* NSObject+Extensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +139,22 @@
 		C35A72C216AB18170091259A /* HueConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HueConfiguration.m; sourceTree = "<group>"; };
 		C35A72CF16AB27330091259A /* HueAddBridgeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HueAddBridgeCell.h; sourceTree = "<group>"; };
 		C35A72D016AB27330091259A /* HueAddBridgeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HueAddBridgeCell.m; sourceTree = "<group>"; };
+		C3AA9C2416B37D58009CE3D8 /* LightingState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightingState.h; sourceTree = "<group>"; };
+		C3AA9C2516B37D58009CE3D8 /* LightingState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightingState.m; sourceTree = "<group>"; };
+		C3AA9C2716B37D73009CE3D8 /* GroupLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupLight.h; sourceTree = "<group>"; };
+		C3AA9C2816B37D73009CE3D8 /* GroupLight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupLight.m; sourceTree = "<group>"; };
+		C3AA9C2A16B384B0009CE3D8 /* LightingGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightingGroup.h; sourceTree = "<group>"; };
+		C3AA9C2B16B384B0009CE3D8 /* LightingGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightingGroup.m; sourceTree = "<group>"; };
+		C3AA9C3016B38509009CE3D8 /* LightingUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightingUnit.h; sourceTree = "<group>"; };
+		C3AA9C3116B38509009CE3D8 /* LightingUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightingUnit.m; sourceTree = "<group>"; };
+		C3BE64B216B220670064090B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C3BE64B616B220A60064090B /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		C3BE64D116B230F70064090B /* DMXLightingUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMXLightingUnit.h; sourceTree = "<group>"; };
+		C3BE64D216B230F70064090B /* DMXLightingUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMXLightingUnit.m; sourceTree = "<group>"; };
+		C3BE64D416B231120064090B /* HueLightingUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HueLightingUnit.h; sourceTree = "<group>"; };
+		C3BE64D516B231120064090B /* HueLightingUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HueLightingUnit.m; sourceTree = "<group>"; };
+		C3BF085116AE4BFA00B9B8EA /* NSObject+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extensions.h"; sourceTree = "<group>"; };
+		C3BF085216AE4BFA00B9B8EA /* NSObject+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extensions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +162,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3BE64B316B220670064090B /* CoreData.framework in Frameworks */,
 				C35A72BA16AB01AE0091259A /* libTruLighting.a in Frameworks */,
 				17CA9F651697E02D00D7E61C /* QuartzCore.framework in Frameworks */,
 				177DD449169750A200992EA8 /* UIKit.framework in Frameworks */,
@@ -189,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				C35A72B916AB01AE0091259A /* libTruLighting.a */,
+				C3BE64B216B220670064090B /* CoreData.framework */,
 				17CA9F641697E02D00D7E61C /* QuartzCore.framework */,
 				177DD448169750A200992EA8 /* UIKit.framework */,
 				177DD44A169750A200992EA8 /* Foundation.framework */,
@@ -201,6 +220,7 @@
 		177DD44E169750A200992EA8 /* TruLightingUI */ = {
 			isa = PBXGroup;
 			children = (
+				C3BF085016AE4BE600B9B8EA /* Categories */,
 				C35A72C016AB17FD0091259A /* Models */,
 				C35A72CE16AB26F90091259A /* Cells */,
 				17F2C51E16A06C8D008C789D /* Common */,
@@ -338,6 +358,19 @@
 		C35A72C016AB17FD0091259A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C3BE64B516B220A60064090B /* DataModel.xcdatamodeld */,
+				C3AA9C2A16B384B0009CE3D8 /* LightingGroup.h */,
+				C3AA9C2B16B384B0009CE3D8 /* LightingGroup.m */,
+				C3AA9C2716B37D73009CE3D8 /* GroupLight.h */,
+				C3AA9C2816B37D73009CE3D8 /* GroupLight.m */,
+				C3AA9C2416B37D58009CE3D8 /* LightingState.h */,
+				C3AA9C2516B37D58009CE3D8 /* LightingState.m */,
+				C3AA9C3016B38509009CE3D8 /* LightingUnit.h */,
+				C3AA9C3116B38509009CE3D8 /* LightingUnit.m */,
+				C3BE64D416B231120064090B /* HueLightingUnit.h */,
+				C3BE64D516B231120064090B /* HueLightingUnit.m */,
+				C3BE64D116B230F70064090B /* DMXLightingUnit.h */,
+				C3BE64D216B230F70064090B /* DMXLightingUnit.m */,
 				C35A72C116AB18170091259A /* HueConfiguration.h */,
 				C35A72C216AB18170091259A /* HueConfiguration.m */,
 			);
@@ -351,6 +384,15 @@
 				C35A72D016AB27330091259A /* HueAddBridgeCell.m */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		C3BF085016AE4BE600B9B8EA /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				C3BF085116AE4BFA00B9B8EA /* NSObject+Extensions.h */,
+				C3BF085216AE4BFA00B9B8EA /* NSObject+Extensions.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -489,6 +531,14 @@
 				1788764E16A0B2CF005E237B /* AddDMXLightViewController.m in Sources */,
 				C35A72C316AB18170091259A /* HueConfiguration.m in Sources */,
 				C35A72D116AB27330091259A /* HueAddBridgeCell.m in Sources */,
+				C3BF085316AE4BFA00B9B8EA /* NSObject+Extensions.m in Sources */,
+				C3BE64B716B220A60064090B /* DataModel.xcdatamodeld in Sources */,
+				C3BE64D316B230F70064090B /* DMXLightingUnit.m in Sources */,
+				C3BE64D616B231120064090B /* HueLightingUnit.m in Sources */,
+				C3AA9C2616B37D58009CE3D8 /* LightingState.m in Sources */,
+				C3AA9C2916B37D73009CE3D8 /* GroupLight.m in Sources */,
+				C3AA9C2C16B384B0009CE3D8 /* LightingGroup.m in Sources */,
+				C3AA9C3216B38509009CE3D8 /* LightingUnit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,14 +547,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				177DD47D169750A200992EA8 /* TruLightingUITests.m in Sources */,
-				17F2C52316A06CEC008C789D /* AppContext.m in Sources */,
-				17F2C52716A06F2A008C789D /* AppRepository.m in Sources */,
-				1788764316A0A439005E237B /* LightsViewController.m in Sources */,
-				1788764716A0A79A005E237B /* AddLightViewController.m in Sources */,
-				1788764B16A0B2B7005E237B /* AddHueLightViewController.m in Sources */,
-				1788764F16A0B2CF005E237B /* AddDMXLightViewController.m in Sources */,
-				C35A72C416AB18170091259A /* HueConfiguration.m in Sources */,
-				C35A72D216AB27330091259A /* HueAddBridgeCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,8 +703,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TruLightingUI/TruLightingUI-Prefix.pch";
 				INFOPLIST_FILE = "TruLightingUITests/TruLightingUITests-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				USER_HEADER_SEARCH_PATHS = "/Users/administrator/Projects/iOS/TruLighting/TruLightingLib/TruLightingLib/**";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -678,8 +722,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TruLightingUI/TruLightingUI-Prefix.pch";
 				INFOPLIST_FILE = "TruLightingUITests/TruLightingUITests-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				USER_HEADER_SEARCH_PATHS = "/Users/administrator/Projects/iOS/TruLighting/TruLightingLib/TruLightingLib/**";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
@@ -715,6 +761,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C3BE64B516B220A60064090B /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C3BE64B616B220A60064090B /* DataModel.xcdatamodel */,
+			);
+			currentVersion = C3BE64B616B220A60064090B /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 177DD43B169750A100992EA8 /* Project object */;
 }

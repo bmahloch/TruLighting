@@ -11,19 +11,19 @@
 #import "AppRepository.h"
 
 #import "HueConfiguration.h"
+#import "HueLightingUnit.h"
 
 #import "TILightingManager.h"
 
 @interface AddHueLightViewController ()
 
-- (void)loadConfigurationForBridge:(NSDictionary *)bridge;
+- (void)updateLightingUnitsWithStatus:(NSDictionary *)status forApiKey:(NSString *)apiKey;
 
 @end
 
 @implementation AddHueLightViewController
 {
-    NSMutableArray *_bridgesDataSource;
-    NSMutableArray *_lightsDataSource;
+    NSMutableArray *_dataSource;
 }
 
 #pragma mark - Constants
@@ -51,7 +51,7 @@ NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
 {
     [super viewDidLoad];
     
-    _bridgesDataSource = [[AppContext sharedContext].repository getHueConfiguration];
+    _dataSource = [[AppContext sharedContext].repository getHueConfiguration];
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,92 +68,53 @@ NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(section == 0)
-        return _bridgesDataSource.count + 1;
-    
-    return _lightsDataSource.count;
+    return _dataSource.count + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == 0)
+    if(indexPath.row == _dataSource.count)
     {
-        if(indexPath.row == _bridgesDataSource.count)
-        {
-            HueAddBridgeCell *cell = (HueAddBridgeCell*)[tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_ADD_BRIDGE forIndexPath:indexPath];
-            
-            cell.delegate = self;
-            
-            return cell;
-        }
-        else
-        {
-            NSDictionary *bridge = [_bridgesDataSource objectAtIndex:indexPath.row];
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_BRIDGE forIndexPath:indexPath];
-            
-            cell.textLabel.text = [bridge valueForKey:kDataKeyHueBridgeName];
-            cell.detailTextLabel.text = [bridge valueForKey:kDataKeyHueBridgeIpAddress];
-            
-            return cell;
-        }
+        HueAddBridgeCell *cell = (HueAddBridgeCell*)[tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_ADD_BRIDGE forIndexPath:indexPath];
+        
+        cell.delegate = self;
+        
+        return cell;
     }
-
-    return [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_BRIDGE forIndexPath:indexPath];
+    else
+    {
+        NSDictionary *bridge = [_dataSource objectAtIndex:indexPath.row];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_BRIDGE forIndexPath:indexPath];
+        
+        cell.textLabel.text = [bridge valueForKey:kDataKeyHueBridgeName];
+        cell.detailTextLabel.text = [bridge valueForKey:kDataKeyHueBridgeIpAddress];
+        
+        return cell;
+    }
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - UITableViewDelegate Implementation
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == 0)
-    {
-        NSDictionary *bridge = [_bridgesDataSource objectAtIndex:indexPath.row];
-        [self loadConfigurationForBridge:bridge];
-    }
+    NSDictionary *bridge = [_dataSource objectAtIndex:indexPath.row];
+    NSString *ip = [bridge valueForKey:kDataKeyHueBridgeIpAddress];
+    NSString *apiKey = [bridge valueForKey:kDataKeyHueApiKey];
+    
+    [TILightingManager getStatusOfHueHost:ip apiKey:apiKey success:^(NSDictionary *status){
+        
+        [self updateLightingUnitsWithStatus:status forApiKey:apiKey];
+        
+    }failure:^(NSInteger statusCode, NSArray *errors){
+        
+        [[AppContext sharedContext] displayMessages:errors];
+        
+    }];
 }
 
 #pragma mark - HueAddBridgeCellDelegate Implementation
@@ -162,7 +123,7 @@ NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
 {
     NSString *ipAddress = cell.txtBridgeAddress.text;
 
-    if([HueConfiguration bridgeExists:_bridgesDataSource byHost:ipAddress])
+    if([HueConfiguration bridgeExists:_dataSource byHost:ipAddress])
     {
         [[AppContext sharedContext] displayMessage:kMessageHueBridgeExists];
         return;
@@ -189,15 +150,13 @@ NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
         else
         {
             [TILightingManager getStatusOfHueHost:ipAddress apiKey:apiKey success:^(NSDictionary *status){
-                
+
                 NSMutableDictionary *configuration = [status valueForKey:kDataKeyHueConfiguration];
                 
                 [configuration setValue:apiKey forKey:kDataKeyHueApiKey];
-                [_bridgesDataSource addObject:configuration];
-                [[AppContext sharedContext].repository saveHueConfiguration:_bridgesDataSource];
-                
-                _lightsDataSource = [status valueForKey:kDataKeyHueLights];
-                
+                [_dataSource addObject:configuration];
+                [[AppContext sharedContext].repository saveHueConfiguration:_dataSource];
+                [self updateLightingUnitsWithStatus:status forApiKey:apiKey];
                 [self.tableView reloadData];
                 
             }failure:^(NSInteger statusCode, NSArray *errors){
@@ -214,19 +173,44 @@ NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
     }];
 }
 
-- (void)loadConfigurationForBridge:(NSDictionary *)bridge
+- (void)updateLightingUnitsWithStatus:(NSDictionary *)status forApiKey:(NSString *)apiKey
 {
-    [TILightingManager getStatusOfHueHost:[bridge valueForKey:kDataKeyHueBridgeIpAddress] apiKey:[bridge valueForKey:kDataKeyHueApiKey] success:^(NSDictionary *status){
+    NSDictionary *bridge = [status valueForKey:kDataKeyHueConfiguration];
+    NSString *ip = [bridge valueForKey:kDataKeyHueBridgeIpAddress];
+    
+    [[AppContext sharedContext].repository getHueLightingUnitsForApiKey:apiKey success:^(NSArray *existingLightingUnits){
         
-        //NSMutableDictionary *configuration = [status valueForKey:kDataKeyHueConfiguration];
+        NSDictionary *currentLightingUnits = [status valueForKey:kDataKeyHueLights];
         
-        _lightsDataSource = [status valueForKey:kDataKeyHueLights];
+        for(NSString *key in [currentLightingUnits allKeys])
+        {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"lightId == %@", key];
+            NSArray *found = [existingLightingUnits filteredArrayUsingPredicate:predicate];
+            NSDictionary *current = [currentLightingUnits valueForKey:key];
+            
+            if(found == nil || found.count == 0)
+            {
+                HueLightingUnit *new = (HueLightingUnit *)[[AppContext sharedContext].repository createEntity:@"HueLightingUnit"];
+                
+                new.lightId = [NSNumber numberWithInteger:[key integerValue]];
+                new.name = [current valueForKey:kDataKeyHueLightName];
+                new.apiKey = apiKey;
+                new.ip = ip;
+            }
+            else
+            {
+                HueLightingUnit *existing = [found objectAtIndex:0];
+                
+                existing.name = [current valueForKey:kDataKeyHueLightName];
+                existing.ip = ip;
+            }
+        }
         
-        [self.tableView reloadData];
+        [[AppContext sharedContext].repository save];
         
-    }failure:^(NSInteger statusCode, NSArray *errors){
+    }failure:^(NSError *error){
         
-        [[AppContext sharedContext] displayMessages:errors];
+        [[AppContext sharedContext] displayMessage:[error localizedDescription]];
         
     }];
 }

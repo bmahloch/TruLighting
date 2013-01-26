@@ -14,8 +14,10 @@
 
 + (BOOL)bridgeExists:(NSMutableArray *)configuration byHost:(NSString *)host
 {
-    for(NSDictionary *bridge in configuration)
+    for(NSDictionary *config in configuration)
     {
+        NSDictionary *bridge = [config valueForKey:kDataKeyHueConfiguration];
+        
         if([[bridge valueForKey:kDataKeyHueBridgeIpAddress] isEqualToString:host])
             return YES;
     }

@@ -12,8 +12,16 @@
 
 @interface AppRepository : NSObject
 
-- (NSMutableArray *)getAllLights;
+@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
 - (NSMutableArray *)getHueConfiguration;
+- (void)getAllLightingUnits:(void(^)(NSMutableArray *))success failure:(void(^)(NSError *))failure;
+- (void)getHueLightingUnitsForApiKey:(NSString *)apiKey success:(void(^)(NSArray *))success failure:(void(^)(NSError *))failure;
+
+- (id)createEntity:(NSString *)entityName;
+- (void)save;
 
 - (void)saveHueConfiguration:(NSMutableArray *)configuration;
 
