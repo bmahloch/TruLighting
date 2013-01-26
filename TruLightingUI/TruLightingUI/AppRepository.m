@@ -7,7 +7,6 @@
 //
 
 #import "AppRepository.h"
-#import "HueConfiguration.h"
 #import "LightingUnit.h"
 #import "HueLightingUnit.h"
 
@@ -19,10 +18,6 @@
 @end
 
 @implementation AppRepository
-
-#pragma mark - Constants
-
-NSString *const DATA_FILE_HUE_CONFIGURATION = @"HueConfiguration.plist";
 
 #pragma mark - Properties
 
@@ -97,7 +92,7 @@ NSString *const DATA_FILE_HUE_CONFIGURATION = @"HueConfiguration.plist";
     return _persistentStoreCoordinator;
 }
 
-- (NSMutableArray *)getHueConfiguration
+- (NSMutableArray *)getHueBridges
 {
     NSString *path = [[self documentsDirectory] stringByAppendingPathComponent:DATA_FILE_HUE_CONFIGURATION];
 
@@ -109,8 +104,8 @@ NSString *const DATA_FILE_HUE_CONFIGURATION = @"HueConfiguration.plist";
 
 - (void)getAllLightingUnits:(void(^)(NSMutableArray *))success failure:(void(^)(NSError *))failure
 {
-    NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:@"LightingUnit"];
-    NSSortDescriptor *sortName = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:ENTITY_LIGHTING_UNIT];
+    NSSortDescriptor *sortName = [[NSSortDescriptor alloc] initWithKey:DATA_KEY_LIGHTING_UNIT_NAME ascending:YES];
     
     [fetch setSortDescriptors:@[sortName]];
     
@@ -125,8 +120,8 @@ NSString *const DATA_FILE_HUE_CONFIGURATION = @"HueConfiguration.plist";
 
 - (void)getHueLightingUnitsForApiKey:(NSString *)apiKey success:(void(^)(NSArray *))success failure:(void(^)(NSError *))failure;
 {
-    NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:@"HueLightingUnit"];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"apiKey = %@", apiKey];
+    NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:ENTITY_HUE_LIGHTING_UNIT];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", DATA_KEY_HUE_API_KEY, apiKey];
     
     fetch.predicate = predicate;
     
@@ -139,24 +134,46 @@ NSString *const DATA_FILE_HUE_CONFIGURATION = @"HueConfiguration.plist";
         success(result);
 }
 
-
-
 - (id)createEntity:(NSString *)entityName
 {
     return [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.managedObjectContext];
 }
 
-- (void)save
+- (void)save:(void(^)(void))success failure:(void (^)(NSError *))failure
 {
     NSError *error = nil;
+    
     [self.managedObjectContext save:&error];
     
+    if(error)
+        failure(error);
+    else
+        success();
 }
-- (void)saveHueConfiguration:(NSMutableArray *)configuration
+
+- (BOOL)saveHueBridge:(NSDictionary *)bridge withApiKey:(NSString *)apiKey
 {
+    [bridge setValue:apiKey forKey:DATA_KEY_HUE_API_KEY];
+    
+    NSMutableArray *existingBridges = [[AppContext sharedContext].repository getHueBridges];
+    NSInteger index = -1;
+    
+    for(int i = 0; i < existingBridges.count; i++)
+    {
+        NSDictionary *existingBridge = [existingBridges objectAtIndex:i];
+        
+        if([[existingBridge valueForKey:DATA_KEY_HUE_API_KEY] isEqualToString:apiKey])
+            index = i;
+    }
+    
+    if(index >= 0)
+        [existingBridges replaceObjectAtIndex:index withObject:bridge];
+    else
+        [existingBridges addObject:bridge];
+    
     NSString *path = [[self documentsDirectory] stringByAppendingPathComponent:DATA_FILE_HUE_CONFIGURATION];
     
-    [configuration writeToFile:path atomically:YES];
+    return [existingBridges writeToFile:path atomically:YES];
 }
 
 #pragma mark - Private Methods

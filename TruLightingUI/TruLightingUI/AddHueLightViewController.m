@@ -7,17 +7,17 @@
 //
 
 #import "AddHueLightViewController.h"
-#import "AppContext.h"
 #import "AppRepository.h"
 
-#import "HueConfiguration.h"
+#import "HueHelper.h"
 #import "HueLightingUnit.h"
 
 #import "TILightingManager.h"
 
-@interface AddHueLightViewController ()
+@interface AddHueLightViewController()
 
-- (void)updateLightingUnitsWithStatus:(NSDictionary *)status forApiKey:(NSString *)apiKey;
+- (void)loadBridges;
+- (BOOL)bridgeExistsForHost:(NSString *)host;
 
 @end
 
@@ -25,11 +25,6 @@
 {
     NSMutableArray *_dataSource;
 }
-
-#pragma mark - Constants
-
-NSString *const CELL_IDENTIFIER_ADD_BRIDGE = @"HueAddBridgeCell";
-NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
 
 #pragma mark - Constructors
 
@@ -50,8 +45,7 @@ NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    _dataSource = [[AppContext sharedContext].repository getHueConfiguration];
+    [self loadBridges];
 }
 
 - (void)didReceiveMemoryWarning
@@ -91,8 +85,8 @@ NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
         NSDictionary *bridge = [_dataSource objectAtIndex:indexPath.row];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_BRIDGE forIndexPath:indexPath];
         
-        cell.textLabel.text = [bridge valueForKey:kDataKeyHueBridgeName];
-        cell.detailTextLabel.text = [bridge valueForKey:kDataKeyHueBridgeIpAddress];
+        cell.textLabel.text = [bridge valueForKey:DATA_KEY_HUE_BRIDGE_NAME];
+        cell.detailTextLabel.text = [bridge valueForKey:DATA_KEY_HUE_BRIDGE_IP_ADDRESS];
         
         return cell;
     }
@@ -103,12 +97,12 @@ NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *bridge = [_dataSource objectAtIndex:indexPath.row];
-    NSString *ip = [bridge valueForKey:kDataKeyHueBridgeIpAddress];
-    NSString *apiKey = [bridge valueForKey:kDataKeyHueApiKey];
+    NSString *ip = [bridge valueForKey:DATA_KEY_HUE_BRIDGE_IP_ADDRESS];
+    NSString *apiKey = [bridge valueForKey:DATA_KEY_HUE_API_KEY];
     
     [TILightingManager getStatusOfHueHost:ip apiKey:apiKey success:^(NSDictionary *status){
         
-        [self updateLightingUnitsWithStatus:status forApiKey:apiKey];
+        [HueHelper updateStatus:status withApiKey:apiKey];
         
     }failure:^(NSInteger statusCode, NSArray *errors){
         
@@ -122,8 +116,8 @@ NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
 - (void)cellAddBridgeTouched:(HueAddBridgeCell *)cell
 {
     NSString *ipAddress = cell.txtBridgeAddress.text;
-
-    if([HueConfiguration bridgeExists:_dataSource byHost:ipAddress])
+    
+    if([self bridgeExistsForHost:ipAddress])
     {
         [[AppContext sharedContext] displayMessage:kMessageHueBridgeExists];
         return;
@@ -140,8 +134,8 @@ NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
             
             for(NSString *key in [item allKeys])
             {
-                if([key isEqualToString:kDataKeyHueSuccess])
-                    apiKey = [[item valueForKey:key] valueForKey:kDataKeyHueUsername];
+                if([key isEqualToString:DATA_KEY_HUE_REQUEST_SUCCESS])
+                    apiKey = [[item valueForKey:key] valueForKey:DATA_KEY_HUE_BRIDGE_USERNAME];
             }
         }
         
@@ -150,14 +144,9 @@ NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
         else
         {
             [TILightingManager getStatusOfHueHost:ipAddress apiKey:apiKey success:^(NSDictionary *status){
-
-                NSMutableDictionary *configuration = [status valueForKey:kDataKeyHueConfiguration];
                 
-                [configuration setValue:apiKey forKey:kDataKeyHueApiKey];
-                [_dataSource addObject:configuration];
-                [[AppContext sharedContext].repository saveHueConfiguration:_dataSource];
-                [self updateLightingUnitsWithStatus:status forApiKey:apiKey];
-                [self.tableView reloadData];
+                [HueHelper updateStatus:status withApiKey:apiKey];
+                [self loadBridges];
                 
             }failure:^(NSInteger statusCode, NSArray *errors){
                 
@@ -173,46 +162,17 @@ NSString *const CELL_IDENTIFIER_BRIDGE = @"HueBridgeCell";
     }];
 }
 
-- (void)updateLightingUnitsWithStatus:(NSDictionary *)status forApiKey:(NSString *)apiKey
+#pragma mark - Private Methods
+
+- (void)loadBridges
 {
-    NSDictionary *bridge = [status valueForKey:kDataKeyHueConfiguration];
-    NSString *ip = [bridge valueForKey:kDataKeyHueBridgeIpAddress];
-    
-    [[AppContext sharedContext].repository getHueLightingUnitsForApiKey:apiKey success:^(NSArray *existingLightingUnits){
-        
-        NSDictionary *currentLightingUnits = [status valueForKey:kDataKeyHueLights];
-        
-        for(NSString *key in [currentLightingUnits allKeys])
-        {
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"lightId == %@", key];
-            NSArray *found = [existingLightingUnits filteredArrayUsingPredicate:predicate];
-            NSDictionary *current = [currentLightingUnits valueForKey:key];
-            
-            if(found == nil || found.count == 0)
-            {
-                HueLightingUnit *new = (HueLightingUnit *)[[AppContext sharedContext].repository createEntity:@"HueLightingUnit"];
-                
-                new.lightId = [NSNumber numberWithInteger:[key integerValue]];
-                new.name = [current valueForKey:kDataKeyHueLightName];
-                new.apiKey = apiKey;
-                new.ip = ip;
-            }
-            else
-            {
-                HueLightingUnit *existing = [found objectAtIndex:0];
-                
-                existing.name = [current valueForKey:kDataKeyHueLightName];
-                existing.ip = ip;
-            }
-        }
-        
-        [[AppContext sharedContext].repository save];
-        
-    }failure:^(NSError *error){
-        
-        [[AppContext sharedContext] displayMessage:[error localizedDescription]];
-        
-    }];
+    _dataSource = [[AppContext sharedContext].repository getHueBridges];
+    [self.tableView reloadData];
+}
+
+- (BOOL)bridgeExistsForHost:(NSString *)host
+{
+    return NO;
 }
 
 @end
