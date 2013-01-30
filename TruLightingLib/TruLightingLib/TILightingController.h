@@ -15,11 +15,12 @@
 #define kDMXLoopingCommandDelay 0.025f
 #define kHueLoopingCommandDelay 0.5f
 
-#define kDMXDispatchQueueNameFormat @"com.truidea.dmxqueue%@"
-#define kHueDispatchQueueNameFormat @"com.truidea.huequeue%@"
+#define kDMXDispatchQueueNameFormat @"com.truidea.dmxqueue%d"
+#define kHueDispatchQueueNameFormat @"com.truidea.huequeue%d"
 
 @protocol TILightingController <NSObject>
 
+- (void)update;
 - (void)updateColor;
 - (void)updateIntensity;
 - (void)fadeOff;

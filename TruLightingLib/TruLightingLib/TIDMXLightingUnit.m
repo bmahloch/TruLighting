@@ -37,6 +37,11 @@ NSString *const ARTNET_PROTOCOL_STRING = @"Art-Net";
 
 #pragma mark - TILightingController Implementation
 
+- (void)update
+{
+    
+}
+
 - (void)updateColor
 {
     NSInteger r,g,b;
@@ -196,14 +201,14 @@ NSString *const ARTNET_PROTOCOL_STRING = @"Art-Net";
     if(_socket == nil)
         _socket = [[GCDAsyncUdpSocket alloc] init];
     
-    [_socket sendData:_artnetPacket toHost:self.ipAddress port:ARTNET_PORT withTimeout:-1 tag:1];
+    [_socket sendData:_artnetPacket toHost:self.ip port:ARTNET_PORT withTimeout:-1 tag:1];
 }
 
 - (dispatch_queue_t)getDispatchQueue
 {
     if(_queue == nil)
     {
-        NSString *queueLabel = [NSString stringWithFormat:kDMXDispatchQueueNameFormat, self.uniqueId];
+        NSString *queueLabel = [NSString stringWithFormat:kDMXDispatchQueueNameFormat, self.channel];
         _queue = dispatch_queue_create([queueLabel cStringUsingEncoding:NSUTF8StringEncoding], DISPATCH_QUEUE_SERIAL);
     }
     

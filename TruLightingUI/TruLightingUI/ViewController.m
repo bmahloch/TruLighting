@@ -35,6 +35,7 @@
     
     [self.view addSubview:_colorPicker];
     
+    /*
     _group = [TILightingGroup new];
     TIDMXLightingUnit *unit = [TIDMXLightingUnit new];
     
@@ -69,6 +70,7 @@
     [_group.lightingUnits addObject:unit2];
     [_group.lightingUnits addObject:unit3];
     [_group.lightingUnits addObject:unit4];
+     */
 }
 
 - (void)didReceiveMemoryWarning

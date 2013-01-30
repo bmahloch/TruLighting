@@ -8,6 +8,7 @@
     <entity name="GroupLight" representedClassName="GroupLight" syncable="YES">
         <attribute name="sequence" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="lightingState" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="LightingState" syncable="YES"/>
+        <relationship name="lightingUnit" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="LightingUnit" inverseName="groupLights" inverseEntity="LightingUnit" syncable="YES"/>
     </entity>
     <entity name="HueLightingUnit" representedClassName="HueLightingUnit" parentEntity="LightingUnit" syncable="YES">
         <attribute name="apiKey" optional="YES" attributeType="String" syncable="YES"/>
@@ -30,14 +31,14 @@
         <attribute name="ip" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="currentState" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="LightingState" syncable="YES"/>
-        <relationship name="groupLights" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GroupLight" syncable="YES"/>
+        <relationship name="groupLights" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GroupLight" inverseName="lightingUnit" inverseEntity="GroupLight" syncable="YES"/>
     </entity>
     <elements>
         <element name="DMXLightingUnit" positionX="-209" positionY="297" width="128" height="88"/>
-        <element name="LightingGroup" positionX="-99" positionY="-180" width="128" height="73"/>
+        <element name="GroupLight" positionX="-101" positionY="-10" width="128" height="88"/>
         <element name="HueLightingUnit" positionX="-2" positionY="302" width="128" height="73"/>
-        <element name="LightingUnit" positionX="-99" positionY="155" width="128" height="103"/>
+        <element name="LightingGroup" positionX="-99" positionY="-180" width="128" height="73"/>
         <element name="LightingState" positionX="124" positionY="45" width="128" height="148"/>
-        <element name="GroupLight" positionX="-101" positionY="-10" width="128" height="73"/>
+        <element name="LightingUnit" positionX="-99" positionY="155" width="128" height="103"/>
     </elements>
 </model>

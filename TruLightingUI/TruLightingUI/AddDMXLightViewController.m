@@ -7,6 +7,8 @@
 //
 
 #import "AddDMXLightViewController.h"
+#import "DMXLightingUnit.h"
+#import "AppRepository.h"
 
 @interface AddDMXLightViewController ()
 
@@ -51,6 +53,36 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+- (void)viewDidUnload {
+    [self setTxtHost:nil];
+    [self setTxtUniverse:nil];
+    [self setTxtChannel:nil];
+    [self setTxtName:nil];
+    [self setSegType:nil];
+    [super viewDidUnload];
+}
+
+- (IBAction)done:(id)sender
+{
+    DMXLightingUnit *dmx = [[AppContext sharedContext].repository createEntity:ENTITY_DMX_LIGHTING_UNIT];
+    
+    dmx.ip = _txtHost.text;
+    dmx.channel = [NSNumber numberWithInteger:[_txtChannel.text integerValue]];
+    dmx.universe = [NSNumber numberWithInteger:[_txtUniverse.text integerValue]];
+    dmx.kind = [NSNumber numberWithInteger:_segType.selectedSegmentIndex];
+    dmx.name = _txtName.text;
+    
+    [[AppContext sharedContext].repository save:^(){
+    
+        [self dismissModalViewControllerAnimated:YES];
+        
+    }failure:^(NSError *error){
+       
+        [[AppContext sharedContext] displayMessage:[error localizedDescription]];
+        
+    }];
 }
 
 @end

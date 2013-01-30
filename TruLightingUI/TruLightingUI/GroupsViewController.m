@@ -1,26 +1,18 @@
 //
-//  LightsViewController.m
+//  GroupsViewController.m
 //  TruLightingUI
 //
-//  Created by bmahloch on 1/11/13.
+//  Created by bmahloch on 1/29/13.
 //  Copyright (c) 2013 bmahloch. All rights reserved.
 //
 
-#import "LightsViewController.h"
-#import "AppContext.h"
-#import "AppRepository.h"
-#import "HueLightingUnit.h"
-#import "UnitControlViewController.h"
+#import "GroupsViewController.h"
 
-@interface LightsViewController ()
+@interface GroupsViewController ()
 
 @end
 
-@implementation LightsViewController
-{
-    NSMutableArray *_dataSource;
-    LightingUnit *_selectedUnit;
-}
+@implementation GroupsViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -31,64 +23,45 @@
     return self;
 }
 
-#pragma mark - Overrides
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-}
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    [[AppContext sharedContext].repository getAllLightingUnits:^(NSMutableArray *result){
-        
-        _dataSource = result;
-        [self.tableView reloadData];
-        
-    }failure:^(NSError *error){
-        
-        [[AppContext sharedContext] displayMessage:[error localizedDescription]];
-        
-    }];
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+ 
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if([segue.identifier isEqualToString:@"UnitControl"])
-    {
-        UnitControlViewController *controller = (UnitControlViewController *)segue.destinationViewController;
-        
-        controller.controllableUnit = [_selectedUnit getControllableUnit];
-    }
+    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+#warning Potentially incomplete method implementation.
+    // Return the number of sections.
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _dataSource.count;
+#warning Incomplete method implementation.
+    // Return the number of rows in the section.
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"HueLightingUnitCell";
+    static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-    cell.textLabel.text = ((HueLightingUnit *)[_dataSource objectAtIndex:indexPath.row]).name;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }
@@ -136,13 +109,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    _selectedUnit = [_dataSource objectAtIndex:indexPath.row];
-    [self performSegueWithIdentifier:@"UnitControl" sender:self];
-}
-
-- (IBAction)done:(UIStoryboardSegue *)segue {
-    NSLog(@"Popping back to this view controller!");
-    //reset ui elements etc here
+    // Navigation logic may go here. Create and push another view controller.
+    /*
+     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+     // ...
+     // Pass the selected object to the new view controller.
+     [self.navigationController pushViewController:detailViewController animated:YES];
+     */
 }
 
 @end

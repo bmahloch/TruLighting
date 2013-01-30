@@ -57,6 +57,12 @@
 
 #pragma mark - TILightingController Implementation
 
+- (void)update
+{
+    for(TILightingUnit *unit in _lightingUnits)
+        [unit update];
+}
+
 - (void)updateColor
 {
     for(TILightingUnit *unit in _lightingUnits)

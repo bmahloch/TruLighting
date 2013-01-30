@@ -14,6 +14,7 @@ extern NSString *const DATA_FILE_HUE_CONFIGURATION;
 
 extern NSString *const ENTITY_LIGHTING_UNIT;
 extern NSString *const ENTITY_HUE_LIGHTING_UNIT;
+extern NSString *const ENTITY_DMX_LIGHTING_UNIT;
 
 extern NSString *const DATA_KEY_LIGHTING_UNIT_NAME;
 extern NSString *const DATA_KEY_HUE_API_KEY;

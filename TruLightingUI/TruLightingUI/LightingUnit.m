@@ -18,4 +18,11 @@
 @dynamic currentState;
 @dynamic groupLights;
 
+#pragma mark - Public Methods
+
+- (TILightingUnit *)getControllableUnit
+{
+    NSAssert(NO, @"Method should be overridden");
+}
+
 @end

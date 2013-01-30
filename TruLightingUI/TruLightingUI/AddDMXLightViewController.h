@@ -10,4 +10,12 @@
 
 @interface AddDMXLightViewController : UITableViewController
 
+@property (weak, nonatomic) IBOutlet UITextField *txtHost;
+@property (weak, nonatomic) IBOutlet UITextField *txtUniverse;
+@property (weak, nonatomic) IBOutlet UITextField *txtChannel;
+@property (weak, nonatomic) IBOutlet UITextField *txtName;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segType;
+
+- (IBAction)done:(id)sender;
+
 @end

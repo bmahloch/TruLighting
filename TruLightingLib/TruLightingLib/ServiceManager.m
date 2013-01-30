@@ -35,7 +35,7 @@ static ServiceManager *_defaultManager;
 
 - (void)setHueLightingUnit:(TIHueLightingUnit *)unit withState:(NSMutableDictionary *)state
 {
-    NSString *url = [NSString stringWithFormat:@"http://%@/api/%@/lights/%d/state", unit.ipAddress, unit.apiKey, unit.lightId];
+    NSString *url = [NSString stringWithFormat:@"http://%@/api/%@/lights/%d/state", unit.ip, unit.apiKey, unit.lightId];
     NSMutableURLRequest *request = [self getRequestForUrl:url method:kHttpMethodPut contentType:kContentTypeJson username:nil password:nil];
     NSData *data = nil;
     

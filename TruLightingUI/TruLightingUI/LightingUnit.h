@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class GroupLight, LightingState;
+@class GroupLight, LightingState, TILightingUnit;
 
 @interface LightingUnit : NSManagedObject
 
@@ -17,6 +17,9 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) LightingState *currentState;
 @property (nonatomic, retain) NSSet *groupLights;
+
+- (TILightingUnit *)getControllableUnit;
+
 @end
 
 @interface LightingUnit (CoreDataGeneratedAccessors)

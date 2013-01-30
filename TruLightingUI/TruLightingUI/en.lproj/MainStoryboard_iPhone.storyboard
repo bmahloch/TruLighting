@@ -97,11 +97,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HueLightingUnitCell" textLabel="EkG-Kz-yV3" style="IBUITableViewCellStyleDefault" id="u0r-T9-ztD">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HueLightingUnitCell" textLabel="EkG-Kz-yV3" style="IBUITableViewCellStyleDefault" id="u0r-T9-ztD">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EkG-Kz-yV3">
@@ -127,10 +127,95 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="07c-QB-QXK" kind="push" identifier="UnitControl" id="YH9-TP-9IQ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Sa-qP-uhU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="23" y="620"/>
+        </scene>
+        <!--Unit Control View Controller-->
+        <scene sceneID="udv-3q-B4r">
+            <objects>
+                <tableViewController id="07c-QB-QXK" customClass="UnitControlViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3vz-MP-lbN">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="S4o-P4-hbo">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="7b3-ZX-vUR">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vd2-ff-r4f">
+                                                    <connections>
+                                                        <action selector="switchOn_Changed:" destination="07c-QB-QXK" eventType="valueChanged" id="4i4-Yc-CeU"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="vd2-ff-r4f" firstAttribute="top" secondItem="7b3-ZX-vUR" secondAttribute="top" constant="8" id="Hcc-IY-gkb"/>
+                                            <constraint firstAttribute="trailing" secondItem="vd2-ff-r4f" secondAttribute="trailing" constant="20" type="default" id="VGX-dQ-e2a"/>
+                                        </constraints>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ZFX-Jv-E5d">
+                                        <rect key="frame" x="0.0" y="44" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="VNR-El-2V4"/>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="VNR-El-2V4" secondAttribute="trailing" constant="20" type="default" id="7dX-bJ-lZs"/>
+                                            <constraint firstItem="VNR-El-2V4" firstAttribute="centerY" secondItem="ZFX-Jv-E5d" secondAttribute="centerY" type="default" id="GIt-kZ-k7f"/>
+                                            <constraint firstItem="VNR-El-2V4" firstAttribute="leading" secondItem="ZFX-Jv-E5d" secondAttribute="leading" constant="20" type="default" id="uMK-IT-kfQ"/>
+                                        </constraints>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="250" id="PuE-I2-26S">
+                                        <rect key="frame" x="0.0" y="88" width="320" height="250"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="249"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H2S-5t-rer">
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="H2S-5t-rer" firstAttribute="trailing" secondItem="PuE-I2-26S" secondAttribute="trailing" type="default" id="79A-hS-KID"/>
+                                            <constraint firstItem="H2S-5t-rer" firstAttribute="top" secondItem="PuE-I2-26S" secondAttribute="top" type="default" id="Wl1-Cx-GpR"/>
+                                            <constraint firstAttribute="bottom" secondItem="H2S-5t-rer" secondAttribute="bottom" constant="1" id="Xly-jY-VHZ"/>
+                                            <constraint firstItem="H2S-5t-rer" firstAttribute="leading" secondItem="PuE-I2-26S" secondAttribute="leading" type="default" id="t3q-Hd-mk4"/>
+                                        </constraints>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="07c-QB-QXK" id="jy9-sD-UGT"/>
+                            <outlet property="delegate" destination="07c-QB-QXK" id="bAS-gk-tR6"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="g9M-zU-XHc"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A8M-vy-6r0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="528" y="282"/>
         </scene>
         <!--Add Light View Controller - Add Light-->
         <scene sceneID="yag-UM-fFB">
@@ -178,7 +263,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qJx-fX-WWJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="3br-LW-xV6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1025" y="620"/>
+            <point key="canvasLocation" x="1045" y="1086"/>
         </scene>
         <!--AddDMX Light View Controller - DMX-->
         <scene sceneID="1JD-2L-ZOP">
@@ -366,11 +451,24 @@
                             <outlet property="delegate" destination="9Om-tX-Gwa" id="HCv-Yb-Wh8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="DMX" id="Ahb-xN-LZ9"/>
+                    <navigationItem key="navigationItem" title="DMX" id="Ahb-xN-LZ9">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="onf-bP-DZg">
+                            <connections>
+                                <action selector="done:" destination="9Om-tX-Gwa" id="zUo-xl-L2U"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="segType" destination="qxp-Kv-SI9" id="RMt-5Z-Jcu"/>
+                        <outlet property="txtChannel" destination="CVu-Rs-4q1" id="PoU-c9-udF"/>
+                        <outlet property="txtHost" destination="onl-da-fMg" id="du6-CE-k8Y"/>
+                        <outlet property="txtName" destination="SHI-8q-dC7" id="zi5-yh-4Cm"/>
+                        <outlet property="txtUniverse" destination="rfk-F5-7BC" id="l8f-d1-11R"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tNz-iX-UjC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1518" y="358"/>
+            <point key="canvasLocation" x="1538" y="824"/>
         </scene>
         <!--Add Hue Light View Controller - Hue-->
         <scene sceneID="Rxk-nR-ddl">
@@ -460,7 +558,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uyx-nG-4xw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="EmI-jR-Riw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1518" y="1013"/>
+            <point key="canvasLocation" x="1538" y="1479"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="6YP-KR-rqe">
@@ -568,12 +666,20 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B4b-no-d1c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="499" y="620"/>
+            <point key="canvasLocation" x="519" y="1086"/>
         </scene>
     </scenes>
     <classes>
         <class className="AddDMXLightViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AddDMXLightViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="outlet" name="segType" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="txtChannel" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="txtHost" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="txtName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="txtUniverse" candidateClass="UITextField"/>
+            </relationships>
         </class>
         <class className="AddHueLightViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AddHueLightViewController.h"/>
@@ -599,6 +705,12 @@
         </class>
         <class className="UIStoryboardSegue" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
+        </class>
+        <class className="UnitControlViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UnitControlViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="switchOn_Changed:"/>
+            </relationships>
         </class>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>

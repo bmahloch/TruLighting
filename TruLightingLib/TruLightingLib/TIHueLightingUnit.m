@@ -27,6 +27,11 @@
 
 #pragma mark - TILightingController Implementation
 
+- (void)update
+{
+    
+}
+
 - (void)updateColor
 {
     [self updateState:[self getColorState]];
@@ -140,7 +145,7 @@
 {
     if(_queue == nil)
     {
-        NSString *queueLabel = [NSString stringWithFormat:kHueDispatchQueueNameFormat, self.uniqueId];
+        NSString *queueLabel = [NSString stringWithFormat:kHueDispatchQueueNameFormat, self.lightId];
         _queue = dispatch_queue_create([queueLabel cStringUsingEncoding:NSUTF8StringEncoding], DISPATCH_QUEUE_SERIAL);
     }
     

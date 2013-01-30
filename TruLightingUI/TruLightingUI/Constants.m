@@ -14,6 +14,7 @@ NSString *const DATA_FILE_HUE_CONFIGURATION = @"HueConfiguration.plist";
 
 NSString *const ENTITY_LIGHTING_UNIT = @"LightingUnit";
 NSString *const ENTITY_HUE_LIGHTING_UNIT = @"HueLightingUnit";
+NSString *const ENTITY_DMX_LIGHTING_UNIT = @"DMXLightingUnit";
 
 NSString *const DATA_KEY_LIGHTING_UNIT_NAME = @"name";
 NSString *const DATA_KEY_HUE_API_KEY = @"apiKey";

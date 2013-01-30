@@ -50,7 +50,6 @@
 		C35A72BA16AB01AE0091259A /* libTruLighting.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C35A72B916AB01AE0091259A /* libTruLighting.a */; };
 		C35A72D116AB27330091259A /* HueAddBridgeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C35A72D016AB27330091259A /* HueAddBridgeCell.m */; };
 		C3AA9C2616B37D58009CE3D8 /* LightingState.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA9C2516B37D58009CE3D8 /* LightingState.m */; };
-		C3AA9C2916B37D73009CE3D8 /* GroupLight.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA9C2816B37D73009CE3D8 /* GroupLight.m */; };
 		C3AA9C2C16B384B0009CE3D8 /* LightingGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA9C2B16B384B0009CE3D8 /* LightingGroup.m */; };
 		C3AA9C3216B38509009CE3D8 /* LightingUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AA9C3116B38509009CE3D8 /* LightingUnit.m */; };
 		C3BE64B316B220670064090B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BE64B216B220670064090B /* CoreData.framework */; };
@@ -58,6 +57,9 @@
 		C3BE64D316B230F70064090B /* DMXLightingUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BE64D216B230F70064090B /* DMXLightingUnit.m */; };
 		C3BE64D616B231120064090B /* HueLightingUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BE64D516B231120064090B /* HueLightingUnit.m */; };
 		C3BF085316AE4BFA00B9B8EA /* NSObject+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BF085216AE4BFA00B9B8EA /* NSObject+Extensions.m */; };
+		C3EC700E16B8B08000231F90 /* UnitControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EC700D16B8B08000231F90 /* UnitControlViewController.m */; };
+		C3EC701216B8C78D00231F90 /* GroupLight.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EC701116B8C78C00231F90 /* GroupLight.m */; };
+		C3EC701516B8CE9800231F90 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EC701416B8CE9800231F90 /* GroupsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,8 +146,6 @@
 		C35A72D016AB27330091259A /* HueAddBridgeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HueAddBridgeCell.m; sourceTree = "<group>"; };
 		C3AA9C2416B37D58009CE3D8 /* LightingState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightingState.h; sourceTree = "<group>"; };
 		C3AA9C2516B37D58009CE3D8 /* LightingState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightingState.m; sourceTree = "<group>"; };
-		C3AA9C2716B37D73009CE3D8 /* GroupLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupLight.h; sourceTree = "<group>"; };
-		C3AA9C2816B37D73009CE3D8 /* GroupLight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupLight.m; sourceTree = "<group>"; };
 		C3AA9C2A16B384B0009CE3D8 /* LightingGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightingGroup.h; sourceTree = "<group>"; };
 		C3AA9C2B16B384B0009CE3D8 /* LightingGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightingGroup.m; sourceTree = "<group>"; };
 		C3AA9C3016B38509009CE3D8 /* LightingUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightingUnit.h; sourceTree = "<group>"; };
@@ -158,6 +158,12 @@
 		C3BE64D516B231120064090B /* HueLightingUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HueLightingUnit.m; sourceTree = "<group>"; };
 		C3BF085116AE4BFA00B9B8EA /* NSObject+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extensions.h"; sourceTree = "<group>"; };
 		C3BF085216AE4BFA00B9B8EA /* NSObject+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extensions.m"; sourceTree = "<group>"; };
+		C3EC700C16B8B08000231F90 /* UnitControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitControlViewController.h; sourceTree = "<group>"; };
+		C3EC700D16B8B08000231F90 /* UnitControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitControlViewController.m; sourceTree = "<group>"; };
+		C3EC701016B8C78C00231F90 /* GroupLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupLight.h; sourceTree = "<group>"; };
+		C3EC701116B8C78C00231F90 /* GroupLight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupLight.m; sourceTree = "<group>"; };
+		C3EC701316B8CE9800231F90 /* GroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
+		C3EC701416B8CE9800231F90 /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,6 +290,10 @@
 				1788764916A0B2B7005E237B /* AddHueLightViewController.m */,
 				1788764C16A0B2CF005E237B /* AddDMXLightViewController.h */,
 				1788764D16A0B2CF005E237B /* AddDMXLightViewController.m */,
+				C3EC700C16B8B08000231F90 /* UnitControlViewController.h */,
+				C3EC700D16B8B08000231F90 /* UnitControlViewController.m */,
+				C3EC701316B8CE9800231F90 /* GroupsViewController.h */,
+				C3EC701416B8CE9800231F90 /* GroupsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -366,10 +376,10 @@
 			isa = PBXGroup;
 			children = (
 				C3BE64B516B220A60064090B /* DataModel.xcdatamodeld */,
+				C3EC701016B8C78C00231F90 /* GroupLight.h */,
+				C3EC701116B8C78C00231F90 /* GroupLight.m */,
 				C3AA9C2A16B384B0009CE3D8 /* LightingGroup.h */,
 				C3AA9C2B16B384B0009CE3D8 /* LightingGroup.m */,
-				C3AA9C2716B37D73009CE3D8 /* GroupLight.h */,
-				C3AA9C2816B37D73009CE3D8 /* GroupLight.m */,
 				C3AA9C2416B37D58009CE3D8 /* LightingState.h */,
 				C3AA9C2516B37D58009CE3D8 /* LightingState.m */,
 				C3AA9C3016B38509009CE3D8 /* LightingUnit.h */,
@@ -540,11 +550,13 @@
 				C3BE64D316B230F70064090B /* DMXLightingUnit.m in Sources */,
 				C3BE64D616B231120064090B /* HueLightingUnit.m in Sources */,
 				C3AA9C2616B37D58009CE3D8 /* LightingState.m in Sources */,
-				C3AA9C2916B37D73009CE3D8 /* GroupLight.m in Sources */,
 				C3AA9C2C16B384B0009CE3D8 /* LightingGroup.m in Sources */,
 				C3AA9C3216B38509009CE3D8 /* LightingUnit.m in Sources */,
 				C31EA32416B3FE770069B926 /* HueHelper.m in Sources */,
 				C317821E16B40E5B001F2CA1 /* Constants.m in Sources */,
+				C3EC700E16B8B08000231F90 /* UnitControlViewController.m in Sources */,
+				C3EC701216B8C78D00231F90 /* GroupLight.m in Sources */,
+				C3EC701516B8CE9800231F90 /* GroupsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,16 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TILightingController.h"
+#import "TILightingUnit.h"
 
-#define kDataKeyLightingUnits @"LightingUnits"
-
-@interface TILightingGroup : NSObject <TILightingController>
+@interface TILightingGroup : TILightingUnit
 
 @property (strong, nonatomic) NSMutableArray *lightingUnits;
-
-@property UIColor *color;
-@property NSInteger intensity;
 
 - (id)init;
 
